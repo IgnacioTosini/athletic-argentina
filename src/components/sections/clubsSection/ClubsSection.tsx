@@ -8,7 +8,7 @@ interface Props {
     clubs: ClubWithImages[];
 }
 
-export const ClubsSection = ({ clubs }: Props) => {
+export const ClubsSection = ({ clubs = [] }: Props) => {
     if (clubs.length === 0) {
         return null;
     }

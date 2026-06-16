@@ -31,7 +31,7 @@ const orderStatusLabel = {
 };
 
 export const OrdersSection = ({
-    orders,
+    orders = [],
     selectedOrder,
     setSelectedOrder,
 }: Props) => {

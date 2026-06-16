@@ -12,7 +12,7 @@ interface Props {
     slug?: string;
 }
 
-export const ProductList = ({ products, demo, name, slug }: Props) => {
+export const ProductList = ({ products = [], demo, name, slug }: Props) => {
     const addItem = useCartStore((state) => state.addItem);
 
     return (

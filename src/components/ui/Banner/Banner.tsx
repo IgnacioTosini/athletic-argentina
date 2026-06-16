@@ -5,7 +5,7 @@ interface Props {
   clubs: Club[];
 }
 
-export const Banner = ({ clubs }: Props) => {
+export const Banner = ({ clubs = [] }: Props) => {
   const marqueeClubs = clubs.length > 0 ? [...clubs, ...clubs] : [];
 
   if(clubs.length === 0) {
