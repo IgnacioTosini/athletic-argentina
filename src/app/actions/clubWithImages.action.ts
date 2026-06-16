@@ -1,6 +1,6 @@
 'use server';
 
-import { ImageType } from "@/generated/prisma/enums";
+import { ImageType } from "@prisma/client";
 import { deleteCloudinaryImage } from "@/lib/cloudinary";
 import { prisma } from "@/lib/prisma";
 import { CreateClubDto } from "@/schemas/club.schema";

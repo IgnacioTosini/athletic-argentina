@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CreateClubFormValues, createClubSchema } from '@/schemas/club.schema';
 import { createClubWithImages, updateClubWithImages } from '@/app/actions/clubWithImages.action';
-import { ImageType } from '@/generated/prisma/enums';
+import { ImageType } from "@prisma/client";
 import { getClubById } from '@/app/actions/club.action';
 import { useClubModalStore } from '@/store/club.store';
 import { toast } from 'react-toastify';

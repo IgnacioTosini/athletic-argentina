@@ -12,7 +12,7 @@ import {
 } from '@/schemas/product.schema';
 
 import { ImageService } from '@/services/ImageService';
-import { ImageType } from '@/generated/prisma/enums';
+import { ImageType } from "@prisma/client";
 
 import { createProductWithImages, getProductById, updateProductWithImages } from '@/app/actions/productWithImages.action';
 import { toast } from 'react-toastify';
