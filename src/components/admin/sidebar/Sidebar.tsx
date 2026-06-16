@@ -31,13 +31,13 @@ export const Sidebar = ({ clubs }: Props) => {
             <div className='stadistics-box'>
                 <div className='stadistics-item'>
                     <span className='title'>Clubes</span>
-                    <span className='value'>{clubs.length}</span>
+                    <span className='value'>{clubs.length || 0}</span>
                 </div>
 
                 <div className='stadistics-item'>
                     <span className='title'>Activos</span>
                     <span className='value'>
-                        {clubs.filter(club => club.isActive).length}
+                        {clubs.filter(club => club.isActive).length || 0}
                     </span>
                 </div>
 
@@ -45,7 +45,7 @@ export const Sidebar = ({ clubs }: Props) => {
                     <span className='title'>Productos</span>
                     <span className='value'>
                         {clubs.reduce(
-                            (acc, club) => acc + club.products.length,
+                            (acc, club) => acc + (club.products.length || 0),
                             0
                         )}
                     </span>
@@ -100,7 +100,7 @@ export const Sidebar = ({ clubs }: Props) => {
                         >
                             {club.name}
                             <span>
-                                {club.products.length}
+                                {club.products.length || 0}
                             </span>
                         </li>
                     ))}

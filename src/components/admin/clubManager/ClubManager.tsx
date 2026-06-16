@@ -49,7 +49,7 @@ export const ClubManager = ({ clubs }: Props) => {
                             <td data-label="Club" onClick={() => selectClub(club.id)} className='club-name'>{club.name}</td>
                             <td data-label="Disciplina">{club.discipline}</td>
                             <td data-label="Productos" className="products-count">
-                                {club.products.length}
+                                {club.products.length || 0}
                             </td>
                             <td data-label="Estado"><span className={club.isActive ? 'status-badge status-active' : 'status-badge status-draft'}>{club.isActive ? 'Activo' : 'Inactivo'}</span></td>
                             <td data-label="Acciones">

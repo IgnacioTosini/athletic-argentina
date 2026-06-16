@@ -88,7 +88,7 @@ export const OrdersSection = ({
                         </span>
 
                         <span className="adminOrdersCountValue">
-                            {orders.length}
+                            {orders.length || 0}
                         </span>
                     </div>
                 </header>
@@ -150,7 +150,7 @@ export const OrdersSection = ({
                                                 </td>
 
                                                 <td>
-                                                    {order.items.length}
+                                                    {order.items.length || 0}
                                                 </td>
 
                                                 <td>

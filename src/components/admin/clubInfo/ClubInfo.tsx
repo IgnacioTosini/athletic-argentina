@@ -31,15 +31,15 @@ export const ClubInfo = ({ selectedClub }: Props) => {
             <div className="club-info-products-stats-container">
                 <div className="club-info-products-stats">
                     <span className='club-info-products-stats-title'>Productos</span>
-                    <span className='club-info-products-stats-count'>{selectedClub.products.length}</span>
+                    <span className='club-info-products-stats-count'>{selectedClub.products.length || 0}</span>
                 </div>
                 <div className="club-info-products-stats">
                     <span className='club-info-products-stats-title'>Activos</span>
-                    <span className='club-info-products-stats-count'>{selectedClub.products.filter(product => product.isActive).length}</span>
+                    <span className='club-info-products-stats-count'>{selectedClub.products.filter(product => product.isActive).length || 0}</span>
                 </div>
                 <div className="club-info-products-stats">
                     <span className='club-info-products-stats-title'>Stock Total</span>
-                    <span className='club-info-products-stats-count'>{selectedClub.products.reduce((total, product) => total + (product.stock ?? 0), 0)}</span>
+                    <span className='club-info-products-stats-count'>{selectedClub.products.reduce((total, product) => total + (product.stock ?? 0), 0) || 0}</span>
                 </div>
             </div>
 
