@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Anton } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import { Analytics } from "@vercel/analytics/next"
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.scss";
 
@@ -73,6 +74,7 @@ export default function RootLayout({
       <body>
         {children}
         <ToastContainer position="top-right" autoClose={3000} />
+        <Analytics />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@ import Navbar from "@/components/layout/Navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import { isAdminAuthenticated } from "@/lib/admin-session";
+import { Analytics } from "@vercel/analytics/next";
 import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
@@ -49,6 +50,7 @@ export default async function SiteLayout({
       {children}
       <Footer />
       <ToastContainer position="top-right" autoClose={3000} />
+      <Analytics />
     </>
   );
 }
