@@ -44,7 +44,7 @@ export async function handleWhatsappCheckout({
 
     window.open(
         getWhatsappUrl(
-            process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "",
+            process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "",
             message
         ),
         "_blank"

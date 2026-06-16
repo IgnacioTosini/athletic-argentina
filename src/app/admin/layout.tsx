@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ToastContainer } from "react-toastify";
 import { Analytics } from "@vercel/analytics/next"
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,7 +20,6 @@ export default function AdminLayout({
   return (
     <>
       {children}
-      <ToastContainer position="top-right" autoClose={3000} />
       <Analytics />
     </>
   );
