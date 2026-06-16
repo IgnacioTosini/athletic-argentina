@@ -10,6 +10,10 @@ interface Props {
 }
 
 export const Demo = ({ club }: Props) => {
+    if (!club) {
+        return null;
+    }
+
     return (
         <div className="demo-section" id="tienda">
             <div className="demo-section-container">

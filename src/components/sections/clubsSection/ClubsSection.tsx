@@ -9,6 +9,10 @@ interface Props {
 }
 
 export const ClubsSection = ({ clubs }: Props) => {
+    if (clubs.length === 0) {
+        return null;
+    }
+
     return (
         <div className="clubs-section" id="clubes">
             <div className="clubs-section-container">

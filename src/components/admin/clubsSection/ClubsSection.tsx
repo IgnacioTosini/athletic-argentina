@@ -22,6 +22,10 @@ export const ClubsSection = ({ clubs }: Props) => {
     const selectedClubId = useClubModalStore((state) => state.selectedClubId);
     const selectedClub = clubs.find(club => club.id === selectedClubId);
 
+    if (!selectedClub) {
+        return null;
+    }
+
     return (
         <div className="clubs-section-admin">
             <Sidebar clubs={clubs} />

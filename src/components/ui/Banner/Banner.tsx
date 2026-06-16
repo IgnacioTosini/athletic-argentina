@@ -8,6 +8,14 @@ interface Props {
 export const Banner = ({ clubs }: Props) => {
   const marqueeClubs = clubs.length > 0 ? [...clubs, ...clubs] : [];
 
+  if(clubs.length === 0) {
+    return (
+      <section className="banner" aria-label="Marcas destacadas">
+        <p className="bannerEmpty">No hay clubes disponibles</p>
+      </section>
+    )
+  }
+
   return (
     <section className="banner" aria-label="Marcas destacadas">
       {marqueeClubs.length > 0 ? (
