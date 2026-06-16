@@ -1,0 +1,55 @@
+@use '@/styles/variables' as *;
+
+.doubts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary-color;
+    padding: 8rem 0;
+    width: 100%;
+    min-height: 80dvh;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+
+    .doubts-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: flex-start;
+        gap: 4rem;
+        width: 100%;
+        max-width: 1300px;
+        padding: 0 2rem;
+        color: $color-text;
+
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        &-header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 1rem;
+            text-align: left;
+            width: 100%;
+            max-width: 400px;
+
+            .doubts-container-text {
+                color: $color-text-secondary;
+                font-size: $font-size-medium;
+                max-width: 600px;
+            }
+        }
+
+        &-questions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 2rem;
+            width: 100%;
+        }
+    }
+}

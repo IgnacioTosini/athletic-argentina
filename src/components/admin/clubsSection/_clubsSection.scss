@@ -1,0 +1,12 @@
+@use '@/styles/variables' as *;
+
+.clubs-section-admin {
+    display: flex;
+    background-color: $primary-color;
+    height: 100dvh;
+    padding: 0;
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
+}

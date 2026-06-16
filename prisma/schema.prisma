@@ -1,0 +1,157 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum ImageType {
+  LOGO
+  BANNER
+  PRODUCT
+  GALLERY
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model Club {
+  id String @id @default(uuid())
+
+  name String
+  slug String @unique
+
+  description String?
+  foundedAt   Int?
+  discipline  String?
+  city        String?
+
+  isActive Boolean @default(true)
+
+  socialInstagram String?
+  socialFacebook  String?
+  socialTiktok    String?
+  socialWebsite   String?
+
+  images Image[]
+
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id String @id @default(uuid())
+
+  clubId String
+  club   Club   @relation(fields: [clubId], references: [id], onDelete: Cascade)
+
+  name        String
+  description String?
+
+  price    Decimal @db.Decimal(10, 2)
+  category String
+  isActive Boolean @default(true)
+
+  images Image[]
+
+  stock Int? @default(0)
+
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  cartItems  CartItem[]
+  orderItems OrderItem[]
+}
+
+model Image {
+  id String @id @default(uuid())
+
+  url      String
+  publicId String
+
+  type ImageType
+
+  clubId    String?
+  productId String?
+
+  createdAt DateTime @default(now())
+
+  club    Club?    @relation(fields: [clubId], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Cart {
+  id String @id @default(cuid())
+
+  items CartItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id String @id @default(cuid())
+
+  quantity Int @default(1)
+
+  cartId String
+  cart   Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@unique([cartId, productId])
+}
+
+model Order {
+  id String @id @default(cuid())
+
+
+  total Decimal @db.Decimal(10, 2)
+
+  customerName String
+  phone        String
+  email        String?
+
+  notes String?
+
+  status OrderStatus @default(PENDING)
+
+  items OrderItem[]
+
+  createdAt DateTime @default(now())
+
+  @@index([status])
+}
+
+model OrderItem {
+  id String @id @default(cuid())
+
+  quantity Int
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  productName String
+
+  price Decimal @db.Decimal(10, 2)
+
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,41 @@
+@use '@/styles/variables' as *;
+
+.spam-message {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: $secondary-color;
+    color: $color-text;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    padding: 4rem;
+    margin: 2rem 0;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .title-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .5rem;
+        
+        .title-main {
+            font-size: $font-size-small;
+        }
+        
+        .title-sub {
+            font-size: $font-size-xlarge;
+            max-width: 250px;
+        }
+    }
+
+    .spam-message-text {
+        max-width: 800px;
+        color: $color-text-secondary;
+        font-size: $font-size-medium-large;
+        line-height: 28px;
+    }
+}

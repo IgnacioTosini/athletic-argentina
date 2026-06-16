@@ -1,0 +1,56 @@
+@use '@/styles/variables' as *;
+
+.doubts-container-questions-item {
+    width: 100%;
+    max-width: 600px;
+    border-top: 1px solid $border-color;
+    padding: 1rem;
+    cursor: pointer;
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &-title {
+        font-size: $font-size-medium-large;
+        font-weight: $font-weight-regular;
+        color: $color-text;
+        font-family: $font-family-display;
+        line-height: 28px;
+        margin: 0;
+    }
+
+    &-icon {
+        color: $color-text;
+        font-size: 1.5rem;
+        transition: transform .3s ease;
+    }
+
+    &-content {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows .35s ease;
+    }
+
+    &-text {
+        overflow: hidden;
+        color: $color-text-secondary;
+        font-size: $font-size-medium;
+        line-height: 26px;
+        margin-top: 0;
+    }
+
+    &.active {
+        .doubts-container-questions-item-content {
+            grid-template-rows: 1fr;
+            margin-top: 1rem;
+        }
+
+        .doubts-container-questions-item-icon {
+            transform: rotate(180deg);
+        }
+    }
+}

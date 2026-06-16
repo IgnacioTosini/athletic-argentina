@@ -1,0 +1,203 @@
+@use '@/styles/variables' as *;
+
+.product-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 4rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
+
+    .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 4rem 2rem;
+        background: $primary-color;
+        border: 1px solid $border-color;
+
+        .empty-state-text {
+            font-size: $font-size-medium-large;
+            color: $color-text-secondary;
+            text-align: center;
+            max-width: 400px;
+        }
+    }
+
+    .demo-section-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        background: $primary-color;
+        border: 1px solid $border-color;
+
+        .demo-section-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid $border-color;
+
+            @media (max-width: 768px) {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .demo-section-url-container {
+                display: flex;
+                align-items: center;
+
+                .circle {
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    background: red;
+                    margin-right: .5rem;
+
+                    &:nth-child(3) {
+                        background: green;
+                        margin-right: 1rem;
+                    }
+                }
+
+                .demo-section-url {
+                    font-size: $font-size-small;
+                    font-weight: $font-weight-regular;
+                    color: $color-text-secondary;
+                    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                }
+            }
+
+            .demo-section-club-name {
+                font-size: $font-size-normal;
+                color: $color-text-secondary;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                font-weight: $font-weight-semibold;
+            }
+        }
+
+        .demo-section-products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            width: 100%;
+
+            @media (max-width: 900px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media (max-width: 600px) {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-section-product {
+                display: flex;
+                flex-direction: column;
+                border-right: 1px solid rgba(255, 255, 255, .08);
+
+                &:last-child {
+                    border-right: none;
+                }
+
+                .demo-section-product-image-wrapper {
+                    position: relative;
+                    height: 390px;
+                    overflow: hidden;
+                    background: #0a0a0a;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        background: linear-gradient(to top,
+                                rgba(0, 0, 0, .45),
+                                rgba(0, 0, 0, .05));
+                        z-index: 1;
+                    }
+
+                    .demo-section-image {
+                        object-fit: cover;
+                        transition: transform .6s ease;
+                    }
+                }
+
+                &:hover {
+                    .demo-section-image {
+                        transform: scale(1.05);
+                    }
+                }
+
+                .demo-section-product-info {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: .75rem;
+                    padding: 1.5rem;
+                    background: #050607;
+                    border-top: 1px solid rgba(255, 255, 255, .06);
+                    min-height: 120px;
+                }
+
+                .demo-section-product-badge {
+                    font-size: $font-size-xsmall;
+                    line-height: 15px;
+                    letter-spacing: 3px;
+                    text-transform: uppercase;
+                    color: $color-text-secondary;
+                    font-weight: $font-weight-semibold;
+                }
+
+                .demo-section-product-name {
+                    font-family: $font-family-display;
+                    font-size: $font-size-medium-large;
+                    font-weight: $font-weight-medium;
+                    line-height: 24px;
+                    text-transform: uppercase;
+                    color: $color-text;
+                    margin: 0;
+                }
+
+                .demo-section-product-details {
+                    display: flex;
+                    gap: 1rem;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .demo-section-product-price {
+                        font-family: $font-family-display;
+                        font-size: $font-size-medium-large;
+                        font-weight: $font-weight-regular;
+                        line-height: 28px;
+                        color: $color-text;
+                        margin: 0;
+                    }
+
+                    .club-shop-product-button {
+                        background: $color-primary-button;
+                        color: $primary-color;
+                        border: none;
+                        padding: .75rem 1.25rem;
+                        font-size: $font-size-small;
+                        font-weight: $font-weight-semibold;
+                        cursor: pointer;
+                        transition: background .3s ease;
+
+                        &:hover {
+                            background: $color-hover-primary;
+                            color: $color-text;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

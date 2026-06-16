@@ -1,0 +1,411 @@
+@use '@/styles/variables' as *;
+
+.adminOrders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    padding: 2rem 1rem;
+
+    &Container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: min(1400px, 100%);
+        max-width: 1400px;
+    }
+
+    &Header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &Subtitle {
+        margin-top: .5rem;
+        color: $color-text-secondary;
+        font-size: $font-size-medium;
+        max-width: 600px;
+        line-height: 1.6;
+    }
+
+    &CountCard {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 140px;
+        padding: 1rem 1.5rem;
+        border: 1px solid $border-color;
+        background: $secondary-color;
+    }
+
+    &CountLabel {
+        font-size: $font-size-small;
+        text-transform: uppercase;
+        color: $color-text-secondary;
+        letter-spacing: .08em;
+    }
+
+    &CountValue {
+        font-family: $font-family-display;
+        font-size: $font-size-xxxlarge;
+        color: $color-text;
+        line-height: 1;
+    }
+
+    &Grid {
+        display: grid;
+        grid-template-columns: 1.4fr .8fr;
+        gap: 1.5rem;
+    }
+
+    &Card {
+        border: 1px solid $border-color;
+        background: $secondary-color;
+        padding: 1.5rem;
+
+        &Header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &CardTitle {
+        font-family: $font-family-display;
+        font-size: $font-size-large;
+        margin-bottom: 1rem;
+        color: $color-text;
+    }
+
+    &Search {
+        height: 38px;
+        padding: 0 1rem;
+        border: 1px solid $border-color;
+        background: $primary-color;
+        color: $color-text;
+        outline: none;
+    }
+
+    &TableWrap {
+        overflow-x: auto;
+    }
+
+    &Table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            color: $color-text-secondary;
+            font-size: $font-size-small;
+            text-transform: uppercase;
+            border-bottom: 1px solid $border-color;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            color: $color-text;
+        }
+
+        tbody tr {
+            transition: .2s ease;
+
+            &:hover {
+                background: rgba(255, 255, 255, .03);
+            }
+        }
+    }
+
+    &Badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: .35rem .8rem;
+        font-size: $font-size-small;
+        font-weight: $font-weight-semibold;
+        text-transform: uppercase;
+    }
+
+    .pending {
+        color: #fbbf24;
+        border: 1px solid rgba(251, 191, 36, .3);
+        background: rgba(251, 191, 36, .08);
+    }
+
+    .confirmed {
+        color: #22c55e;
+        border: 1px solid rgba(34, 197, 94, .3);
+        background: rgba(34, 197, 94, .08);
+    }
+
+    .shipped {
+        color: #3b82f6;
+        border: 1px solid rgba(59, 130, 246, .3);
+        background: rgba(59, 130, 246, .08);
+    }
+
+    .delivered {
+        color: #8b5cf6;
+        border: 1px solid rgba(139, 92, 246, .3);
+        background: rgba(139, 92, 246, .08);
+    }
+
+    .cancelled {
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, .3);
+        background: rgba(239, 68, 68, .08);
+    }
+
+    &Actions {
+        display: flex;
+        gap: .5rem;
+    }
+
+    &LinkButton,
+    &DangerButton {
+        height: 38px;
+        padding: 0 1rem;
+        border: 1px solid $border-color;
+        background: transparent;
+        color: $color-text;
+        font-size: $font-size-small;
+        cursor: pointer;
+        transition: .2s ease;
+
+        &:hover {
+            background: $color-hover-primary;
+        }
+    }
+
+    &DangerButton {
+        border-color: rgba(239, 68, 68, .3);
+        color: #ef4444;
+    }
+
+    &Details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &Field {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+
+        strong {
+            color: $color-text-secondary;
+            font-size: $font-size-small;
+            text-transform: uppercase;
+        }
+
+        span {
+            color: $color-text;
+        }
+    }
+
+    &StatusForm {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+
+        select {
+            height: 42px;
+            padding: 0 1rem;
+            border: 1px solid $border-color;
+            background: $primary-color;
+            color: $color-text;
+            outline: none;
+        }
+    }
+
+    &Notes {
+        padding: 1rem;
+        border: 1px solid $border-color;
+        background: $primary-color;
+        color: $color-text-secondary;
+        line-height: 1.6;
+    }
+
+    &ItemsTitle {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid $border-color;
+        font-family: $font-family-display;
+        font-size: $font-size-large;
+        color: $color-text;
+        font-weight: $font-weight-regular;
+    }
+
+    &Items {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+    }
+
+    &Item {
+        padding: 1rem;
+        border: 1px solid $border-color;
+        background: $primary-color;
+    }
+
+    &ItemName {
+        font-weight: $font-weight-bold;
+        color: $color-text;
+        margin-bottom: .5rem;
+    }
+
+    &ItemInfo {
+        color: $color-text-secondary;
+        font-size: $font-size-small;
+    }
+
+    &Empty {
+        color: $color-text-secondary;
+    }
+
+    @media (max-width: 1024px) {
+        &Container {
+            width: 100%;
+        }
+
+        &Grid {
+            grid-template-columns: 1fr;
+        }
+
+        &Header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        &CountCard {
+            width: 100%;
+            max-width: 250px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        &Card {
+            padding: 1rem;
+        }
+
+        &CountCard {
+            width: 100%;
+            max-width: none;
+        }
+
+        &Actions {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        &LinkButton,
+        &DangerButton {
+            width: 100%;
+        }
+
+        &CountValue {
+            font-size: $font-size-xxlarge;
+        }
+
+        &Subtitle {
+            font-size: $font-size-normal;
+        }
+    }
+
+    @media (max-width: 640px) {
+
+        &Table {
+            thead {
+                display: none;
+            }
+
+            tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            tbody tr {
+                display: flex;
+                flex-direction: column;
+                gap: .75rem;
+                padding: 1rem;
+                border: 1px solid $border-color;
+                background: $primary-color;
+            }
+
+            td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0;
+                border: none;
+                gap: 1rem;
+                text-align: right;
+            }
+
+            td:nth-child(1)::before {
+                content: "Cliente";
+            }
+
+            td:nth-child(2)::before {
+                content: "Teléfono";
+            }
+
+            td:nth-child(3)::before {
+                content: "Items";
+            }
+
+            td:nth-child(4)::before {
+                content: "Total";
+            }
+
+            td:nth-child(5)::before {
+                content: "Estado";
+            }
+
+            td:nth-child(6)::before {
+                content: "Fecha";
+            }
+
+            td:nth-child(7)::before {
+                content: "Acciones";
+            }
+
+            td::before {
+                color: $color-text-secondary;
+                font-size: $font-size-small;
+                text-transform: uppercase;
+                text-align: left;
+            }
+        }
+
+        &Actions {
+            width: 100%;
+            flex-direction: column;
+        }
+
+        &LinkButton,
+        &DangerButton {
+            width: 100%;
+        }
+
+        &StatusForm {
+            select {
+                width: 100%;
+            }
+        }
+
+        &Field {
+            span {
+                word-break: break-word;
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+@use '@/styles/variables' as *;
+
+.admin-dashboard {
+    display: flex;
+    background-color: $primary-color;
+    height: 100dvh;
+}

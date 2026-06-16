@@ -1,0 +1,59 @@
+@use '@/styles/variables' as *;
+
+.demo-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: $secondary-color;
+    padding: 8rem 0;
+    min-height: 100dvh;
+
+    .demo-section-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 4rem;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 2rem;
+
+        .demo-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+            .demo-section-card {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                height: 40px;
+                background: transparent;
+                border: 1px solid $border-color;
+                border-radius: 4rem;
+                padding: 0.5rem 2rem;
+                font-size: $font-size-normal;
+                font-weight: $font-weight-semibold;
+                text-transform: uppercase;
+                color: $color-text;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background: $color-hover-primary;
+                    border-color: $color-hover-secondary;
+                }
+            }
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    }
+}

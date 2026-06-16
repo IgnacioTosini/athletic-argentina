@@ -1,0 +1,57 @@
+@use '@/styles/variables' as *;
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.club-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background-color: $secondary-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: $color-text;
+    z-index: 1000;
+
+    .club-modal-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 1.2rem 1.5rem;
+        border-bottom: 1px solid $border-color;
+
+        .club-modal-title {
+            font-size: $font-size-medium-large;
+            font-weight: $font-weight-regular;
+            font-family: $font-family-display;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .club-modal-close-button {
+            background: none;
+            border: none;
+            color: $color-text;
+            font-size: $font-size-medium-large;
+            cursor: pointer;
+
+            &:hover {
+                color: $color-hover-secondary;
+            }
+        }
+    }
+}

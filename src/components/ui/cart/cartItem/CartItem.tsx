@@ -1,0 +1,91 @@
+import { CartItem as CartItemType, useCartStore } from '@/store/cart.store';
+import Image from 'next/image';
+import { formatCurrency } from '@/utils';
+import { GoTrash } from 'react-icons/go';
+import { FiPlus } from 'react-icons/fi';
+import './_cartItem.scss';
+
+interface Props {
+    item: CartItemType;
+}
+
+export const CartItem = ({ item }: Props) => {
+    const updateItemQuantity = useCartStore(
+        (state) => state.updateItemQuantity
+    );
+
+    const removeItem = useCartStore(
+        (state) => state.removeItem
+    );
+
+    return (
+        <li className="cartItem">
+            <Image
+                src={item.image}
+                alt={item.name}
+                className="cartItemImage"
+                width={100}
+                height={100}
+            />
+
+            <div className="cartItemInfo">
+                <h3 className="cartItemName">
+                    {item.name}
+                </h3>
+
+                <div className="cartItemActions">
+                    <div className="cartQtyControls">
+                        <button
+                            type="button"
+                            onClick={() =>
+                                updateItemQuantity(
+                                    item.productId,
+                                    item.quantity - 1
+                                )
+                            }
+                            aria-label="Restar cantidad"
+                            className="cartQtyDecrement"
+                        >
+                            -
+                        </button>
+
+                        <span className="cartQtyValue">
+                            {item.quantity}
+                        </span>
+
+                        <button
+                            type="button"
+                            onClick={() =>
+                                updateItemQuantity(
+                                    item.productId,
+                                    item.quantity + 1
+                                )
+                            }
+                            aria-label="Sumar cantidad"
+                            className="cartQtyIncrement"
+                        >
+                            <FiPlus />
+                        </button>
+                    </div>
+
+                    <button
+                        type="button"
+                        className="cartRemoveButton"
+                        onClick={() =>
+                            removeItem(item.productId)
+                        }
+                        aria-label="Eliminar producto"
+                    >
+                        <GoTrash />
+                    </button>
+                </div>
+            </div>
+
+            <p className="cartItemPrice">
+                {formatCurrency(
+                    item.price * item.quantity
+                )}
+            </p>
+        </li>
+    );
+};

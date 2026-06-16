@@ -1,0 +1,173 @@
+@use '@/styles/variables' as *;
+@use 'sass:color';
+
+.club-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    width: 100%;
+
+    .club-manager-description {
+        font-size: $font-size-normal;
+        color: $color-text-secondary;
+        font-family: $font-family;
+        font-weight: $font-weight-regular;
+        line-height: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .club-table {
+            border: none;
+
+            thead {
+                display: none;
+            }
+
+            tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .club-row {
+                display: flex;
+                flex-direction: column;
+
+                padding: 1rem;
+
+                border: 1px solid $border-color;
+                background: $secondary-color;
+            }
+
+            td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: .5rem 0 !important;
+
+                border: none;
+
+                &::before {
+                    content: attr(data-label);
+                    color: $color-text-secondary;
+                    font-size: .75rem;
+                }
+            }
+        }
+    }
+
+    .club-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: $secondary-color;
+        border: 1px solid $border-color;
+
+        thead {
+            background-color: $primary-color;
+
+            th {
+                padding: 0.75rem;
+                text-align: left;
+                font-size: $font-size-small;
+                color: $color-text-secondary;
+                font-family: $font-family;
+                font-weight: $font-weight-semibold;
+                text-transform: uppercase;
+                line-height: 14px;
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: 1px solid $border-color;
+
+                &:hover {
+                    background-color: $color-hover-primary;
+                }
+
+                .club-name {
+                    cursor: pointer;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                td {
+                    padding: 0.75rem;
+                    font-size: $font-size-normal;
+                    color: $color-text;
+                    font-family: $font-family;
+                    font-weight: $font-weight-regular;
+                    line-height: 20px;
+
+                    .actions {
+                        display: flex;
+                        gap: 6px;
+
+                        button {
+                            width: 32px;
+                            height: 32px;
+
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            background: transparent;
+                            border: 1px solid rgba(255, 255, 255, .08);
+
+                            color: white;
+                            cursor: pointer;
+
+                            transition: .2s;
+                        }
+
+                        button:hover {
+                            background: rgba(255, 255, 255, .05);
+                        }
+
+                        &.edit-button {
+                            background-color: $color-status-confirmed;
+
+                            &:hover {
+                                background-color: $color-status-confirmed-bg;
+                            }
+                        }
+
+                        &.delete-button {
+                            background-color: $color-error;
+
+                            &:hover {
+                                background-color: color.scale($color-error, $lightness: -10%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+
+            padding: 4px 10px;
+
+            font-size: 10px;
+            letter-spacing: .08em;
+
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            background: white;
+            color: black;
+        }
+
+        .status-draft {
+            background: #111827;
+            color: #9ca3af;
+        }
+    }
+}

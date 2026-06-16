@@ -1,0 +1,117 @@
+@use '@/styles/variables' as *;
+
+.clubs-section {
+    background: $primary-color;
+    padding: 8rem 0;
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    &-description {
+        max-width: 450px;
+        margin-top: 1rem;
+        margin-bottom: 3rem;
+        color: $color-text-secondary;
+        font-size: $font-size-medium-large;
+        line-height: 1.7;
+    }
+
+    &-cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        overflow: auto;
+        max-height: 600px;
+    }
+
+    &-card {
+        position: relative;
+        height: 370px;
+        overflow: hidden;
+        text-decoration: none;
+        color: $color-text;
+        background: $secondary-color;
+        border: 1px solid transparent;
+        transition: all .3s ease;
+
+        &:hover {
+            .clubs-section-card-image {
+                transform: scale(1.05);
+            }
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, .95) 0%,
+                    rgba(0, 0, 0, .55) 75%,
+                    rgba(0, 0, 0, .15) 100%);
+            z-index: 1;
+        }
+
+        &-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease;
+        }
+
+        &-content {
+            position: absolute;
+            left: 1.5rem;
+            right: 1.5rem;
+            bottom: 2rem;
+            z-index: 2;
+        }
+
+        &-info {
+            display: block;
+            margin-bottom: .75rem;
+            color: rgba(255, 255, 255, .65);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: $font-size-small;
+            font-weight: $font-weight-semibold;
+        }
+
+        &-name {
+            font-family: $font-family-display;
+            font-size: 2.5rem;
+            line-height: .95;
+            text-transform: uppercase;
+            font-weight: $font-weight-regular;
+            font-size: $font-size-large;
+            margin: 0;
+        }
+    }
+
+    @media (max-width: 1200px) {
+        &-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 5rem 0;
+
+        &-cards {
+            grid-template-columns: 1fr;
+        }
+
+        &-card {
+            height: 370px;
+
+            &-name {
+                font-size: 2rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,110 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { useCartStore } from "@/store/cart.store";
+import { CartItem } from "@/components/ui/cart/cartItem/CartItem";
+import { formatCurrency } from "@/utils";
+import { FaWhatsapp } from "react-icons/fa";
+import { WhatsappCheckoutModal } from "@/components/checkout/whatsappCheckoutModal/WhatsappCheckoutModal";
+import { handleWhatsappCheckout } from "@/helpers/whatsapp/handleWhatsappCheckout";
+import { toast } from "react-toastify";
+import { Order } from "@prisma/client";
+import { CheckoutData } from "@/types/checkout.types";
+import { Title } from "@/components/shared/Title/Title";
+import "./_cartPage.scss";
+
+type CheckoutResult =
+    | { ok: true; order: Order }
+    | { ok: false; message: string };
+
+export default function CartPage() {
+    const [open, setOpen] = useState(false);
+    const items = useCartStore((state) => state.items);
+    const subtotal = useCartStore((state) => state.subtotal);
+    const clearCart = useCartStore((state) => state.clearCart);
+
+    const isEmpty = items.length === 0;
+    const handleDirectPurchase = async (data: CheckoutData) => {
+        const res = await handleWhatsappCheckout({
+            ...data,
+            subtotal,
+            items,
+        }) as CheckoutResult;
+
+        if (!res.ok) {
+            toast.error(res.message);
+            return;
+        }
+
+        setOpen(false);
+        clearCart();
+        toast.success("¡Pedido creado! Te redirigimos a WhatsApp para coordinar el pago y envío.");
+    };
+
+    return (
+        <div className="cartPage">
+            <div className="cartPageContainer">
+                <Title title={"Carrito"} subTitle="TU PEDIDO" />
+
+                {isEmpty ? (
+                    <div className="cartEmptyState">
+                        <p className="cartEmptyStateText">Tu carrito esta vacio.</p>
+                        <Link href="/#clubes" className="cartEmptyStateLink">Ver clubes</Link>
+                    </div>
+                ) : (
+                    <div className="cartContent">
+                        <ul className="cartItemsList">
+                            {items.map((item) => (
+                                <CartItem key={`${item.productId}-${item.clubId}`} item={item} />
+                            ))}
+                        </ul>
+
+                        <div className="cartSummary">
+                            <h2>Resumen</h2>
+
+                            <div className="cartSummaryRows">
+                                <div className="cartSummaryRow">
+                                    <span>Subtotal</span>
+                                    <strong>{formatCurrency(subtotal)}</strong>
+                                </div>
+                                <div className="cartSummaryRow">
+                                    <span>Envio</span>
+                                    <strong>A coordinar</strong>
+                                </div>
+                            </div>
+
+                            <div className="cartSummaryTotal">
+                                <p>Total</p>
+                                <strong>{formatCurrency(subtotal)}</strong>
+                            </div>
+
+                            <button
+                                type="button"
+                                className="productActionButton isWhatsapp"
+                                onClick={() => {
+                                    if (isEmpty) {
+                                        return;
+                                    }
+                                    setOpen(true);
+                                }}
+                                disabled={isEmpty}
+                            >
+                                <FaWhatsapp />
+                                COMPRAR POR WHATSAPP
+                            </button>
+
+                            <WhatsappCheckoutModal
+                                open={open}
+                                onClose={() => setOpen(false)}
+                                onSubmit={handleDirectPurchase}
+                            />
+
+                            <p className="cartSummaryHint">Coordinamos envio y pago al toque por WhatsApp.</p>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
