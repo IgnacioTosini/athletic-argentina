@@ -27,7 +27,7 @@ export default function ProductForm({
 }: Props) {
     const [productImage, setProductImage] = useState<File | null>(null);
     const close = useProductModalStore((state) => state.close);
-    const [isPending, startTransition] = useTransition();
+    const [isPending] = useTransition();
     const editingProductId = useProductModalStore(state => state.editingProductId);
 
     const [imagePreview, setImagePreview] =

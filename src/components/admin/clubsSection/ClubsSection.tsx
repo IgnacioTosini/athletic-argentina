@@ -28,10 +28,10 @@ export const ClubsSection = ({ clubs }: Props) => {
 
             {
                 selectedClubId ? (
-                    <ClubInfo selectedClub={selectedClub!} />
+                    <ClubInfo selectedClub={selectedClub! || {}} />
                 )
                     :
-                    <ClubManager clubs={clubs} />
+                    <ClubManager clubs={clubs || []} />
             }
 
             <ClubModal

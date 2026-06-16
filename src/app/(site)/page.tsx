@@ -13,11 +13,11 @@ export default async function Home() {
   return (
     <main>
       <Hero />
-      <Banner clubs={clubs} />
-      <ClubsSection clubs={clubs} />
+      <Banner clubs={clubs || []} />
+      <ClubsSection clubs={clubs || []} />
       <Process />
       <Proposal />
-      <Demo club={clubs[0]} />
+      <Demo club={clubs[0] || {}} />
       <Doubts />
       <Consultation />
     </main>
