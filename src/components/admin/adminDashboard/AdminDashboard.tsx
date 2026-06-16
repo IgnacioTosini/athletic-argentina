@@ -15,8 +15,8 @@ interface Props {
 }
 
 export const AdminDashboard = ({
-    clubs,
-    orders,
+    clubs = [],
+    orders = [],
 }: Props) => {
     const [activeTab, setActiveTab] = useState<"clubs" | "orders">("clubs");
     const [selectedOrder, setSelectedOrder] = useState<(Order & { items: OrderItem[] }) | null>(null);

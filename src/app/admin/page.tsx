@@ -8,8 +8,8 @@ export default async function AdminPage() {
 
   return (
     <AdminDashboard
-      clubs={clubs}
-      orders={orders}
+      clubs={clubs || []}
+      orders={orders || []}
     />
   );
 }

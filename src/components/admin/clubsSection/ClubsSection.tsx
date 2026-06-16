@@ -14,17 +14,13 @@ interface Props {
     clubs: ClubWithImages[];
 }
 
-export const ClubsSection = ({ clubs }: Props) => {
+export const ClubsSection = ({ clubs = [] }: Props) => {
     const isOpenClub = useClubModalStore((state) => state.isOpen);
     const closeClub = useClubModalStore((state) => state.close);
     const isOpenProduct = useProductModalStore((state) => state.isOpen);
     const closeProduct = useProductModalStore((state) => state.close);
     const selectedClubId = useClubModalStore((state) => state.selectedClubId);
     const selectedClub = clubs.find(club => club.id === selectedClubId);
-
-    if (!selectedClub) {
-        return null;
-    }
 
     return (
         <div className="clubs-section-admin">
