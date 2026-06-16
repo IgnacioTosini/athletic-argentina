@@ -9,11 +9,7 @@ interface Props {
     club: ClubWithImages;
 }
 
-export const Demo = ({ club }: Props) => {
-    if (!club) {
-        return null;
-    }
-
+export const Demo = ({ club = {} as ClubWithImages }: Props) => {
     return (
         <div className="demo-section" id="tienda">
             <div className="demo-section-container">

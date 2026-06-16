@@ -3,8 +3,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
-  title: "Athletic Argentina - Panel de Administración",
-  description: "Panel de administración para gestionar clubes deportivos en Argentina.",
+  title: "Admin Panel",
+  description: "Panel de administración de Athletic Argentina",
+
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function AdminLayout({
@@ -15,10 +20,7 @@ export default function AdminLayout({
   return (
     <>
       {children}
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-      />
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 }
