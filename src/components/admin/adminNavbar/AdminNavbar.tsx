@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import './_adminNavbar.scss';
+import Link from "next/link";
 
 interface Props {
     activeTab: "clubs" | "orders";
@@ -30,12 +31,14 @@ export const AdminNavbar = ({
                     Clubes
                 </button>
 
-                <Image
-                    src="/logo.jpg"
-                    alt="logo"
-                    width={40}
-                    height={40}
-                />
+                <Link href="/" className="logo-link">
+                    <Image
+                        src="/logo.jpg"
+                        alt="logo"
+                        width={40}
+                        height={40}
+                    />
+                </Link>
 
                 <button
                     className={
