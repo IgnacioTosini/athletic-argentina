@@ -65,6 +65,7 @@ export async function createClubWithImages(
 
     await Promise.all(imageCreates);
     revalidatePath("/admin");
+    revalidatePath("/");
     return {
         ok: true,
         club
@@ -161,6 +162,7 @@ export async function updateClubWithImages(
             });
         }
         revalidatePath("/admin");
+        revalidatePath("/");
 
         return {
             ok: true,
@@ -208,6 +210,7 @@ export async function deleteClubWithImages(
         });
 
         revalidatePath("/admin");
+        revalidatePath("/");
 
         return {
             ok: true,

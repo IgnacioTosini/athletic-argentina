@@ -10,6 +10,7 @@ import { deleteProductWithImages } from '@/app/actions/productWithImages.action'
 
 import { ProductWithImages } from '@/types';
 
+import { useRouter } from 'next/navigation';
 import './_productManager.scss';
 
 interface Props {
@@ -22,6 +23,7 @@ export const ProductManager = ({
     clubId,
 }: Props) => {
     const openCreate = useProductModalStore((state) => state.openCreate);
+    const router = useRouter();
 
     const openEdit =
         useProductModalStore(
@@ -46,6 +48,7 @@ export const ProductManager = ({
         toast.success(
             'Producto eliminado correctamente'
         );
+        router.refresh();
     };
 
     return (

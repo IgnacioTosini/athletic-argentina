@@ -5,6 +5,7 @@ import { deleteClubWithImages } from '@/app/actions/clubWithImages.action';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { ClubWithImages } from '@/types';
+import { useRouter } from 'next/navigation';
 import './_clubManager.scss';
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 export const ClubManager = ({ clubs }: Props) => {
     const openEdit = useClubModalStore(state => state.openEdit);
     const selectClub = useClubModalStore((state) => state.selectClub);
+    const router = useRouter();
 
     const onDelete = async (clubId: string) => {
         const res = await deleteClubWithImages(clubId);
@@ -22,6 +24,7 @@ export const ClubManager = ({ clubs }: Props) => {
         }
 
         toast.success('Club eliminado correctamente');
+        router.refresh();
     };
 
     return (

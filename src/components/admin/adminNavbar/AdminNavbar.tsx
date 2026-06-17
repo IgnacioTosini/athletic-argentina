@@ -1,8 +1,8 @@
 'use client';
 
 import Image from "next/image";
-import './_adminNavbar.scss';
 import Link from "next/link";
+import './_adminNavbar.scss';
 
 interface Props {
     activeTab: "clubs" | "orders";

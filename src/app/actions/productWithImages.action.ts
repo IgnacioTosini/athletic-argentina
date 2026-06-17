@@ -46,6 +46,7 @@ export async function createProductWithImages({
     }
 
     revalidatePath("/admin");
+    revalidatePath("/");
 
     return {
         ok: true,
@@ -106,6 +107,7 @@ export async function updateProductWithImages(
         }
 
         revalidatePath("/admin");
+        revalidatePath("/");
 
         return {
             ok: true,
@@ -143,6 +145,7 @@ export async function deleteProductWithImages(
         });
 
         revalidatePath("/admin");
+        revalidatePath("/");
 
         return {
             ok: true,

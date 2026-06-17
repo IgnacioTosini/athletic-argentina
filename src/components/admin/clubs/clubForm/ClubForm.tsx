@@ -11,6 +11,7 @@ import { ImageType } from "@prisma/client";
 import { getClubById } from '@/app/actions/club.action';
 import { useClubModalStore } from '@/store/club.store';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 import './_clubForm.scss';
 
 export default function ClubForm() {
@@ -19,6 +20,7 @@ export default function ClubForm() {
     const [isPending] = useTransition();
     const editingClubId = useClubModalStore(state => state.editingClubId);
     const close = useClubModalStore((state) => state.close);
+    const router = useRouter();
 
     const [logoPreview, setLogoPreview] = useState('');
     const [bannerPreview, setBannerPreview] = useState('');
@@ -166,6 +168,7 @@ export default function ClubForm() {
                 setLogoPreview('');
                 setBannerPreview('');
                 close();
+                router.refresh();
             } else {
                 const res = await createClubWithImages(
                     data,
@@ -182,6 +185,7 @@ export default function ClubForm() {
                 setLogoPreview('');
                 setBannerPreview('');
                 close();
+                router.refresh();
             }
         } catch (err) {
             console.error(err);

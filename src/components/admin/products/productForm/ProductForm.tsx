@@ -16,6 +16,7 @@ import { ImageType } from "@prisma/client";
 
 import { createProductWithImages, getProductById, updateProductWithImages } from '@/app/actions/productWithImages.action';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 import './_productForm.scss';
 
 interface Props {
@@ -29,6 +30,7 @@ export default function ProductForm({
     const close = useProductModalStore((state) => state.close);
     const [isPending] = useTransition();
     const editingProductId = useProductModalStore(state => state.editingProductId);
+    const router = useRouter();
 
     const [imagePreview, setImagePreview] =
         useState('');
@@ -121,6 +123,7 @@ export default function ProductForm({
                 if (res.ok) {
                     toast.success('Producto actualizado con éxito');
                     close();
+                    router.refresh();
                 } else {
                     toast.error('Error al actualizar el producto');
                 }
@@ -130,6 +133,7 @@ export default function ProductForm({
                 if (res.ok) {
                     toast.success('Producto creado con éxito');
                     close();
+                    router.refresh();
                 } else {
                     toast.error('Error al crear el producto');
                 }
