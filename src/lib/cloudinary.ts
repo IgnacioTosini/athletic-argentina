@@ -1,5 +1,3 @@
-// lib/cloudinary.ts
-
 import { createHash } from "crypto";
 
 const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME!;

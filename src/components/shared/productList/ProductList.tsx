@@ -3,6 +3,7 @@
 import { ProductWithImages } from '@/types';
 import Image from 'next/image';
 import { useCartStore } from '@/store/cart.store';
+import { toast } from 'react-toastify';
 import './_productList.scss';
 
 interface Props {
@@ -14,6 +15,21 @@ interface Props {
 
 export const ProductList = ({ products = [], demo, name, slug }: Props) => {
     const addItem = useCartStore((state) => state.addItem);
+
+    const handleAddProduct = (product: ProductWithImages) => {
+        addItem({
+            productId: product.id,
+            clubId: product.clubId,
+            name: product.name,
+            image:
+                product.images[0]?.url ||
+                "/banner2.jpg",
+            price: Number(product.price),
+            quantity: 1,
+        });
+
+        toast.success(`${product.name} se agregó al carrito`);
+    };
 
     return (
         <div className="product-list-container">
@@ -70,18 +86,7 @@ export const ProductList = ({ products = [], demo, name, slug }: Props) => {
                                                 !demo && (
                                                     <button
                                                         className="club-shop-product-button"
-                                                        onClick={() =>
-                                                            addItem({
-                                                                productId: product.id,
-                                                                clubId: product.clubId,
-                                                                name: product.name,
-                                                                image:
-                                                                    product.images[0]?.url ||
-                                                                    "/banner2.jpg",
-                                                                price: Number(product.price),
-                                                                quantity: 1,
-                                                            })
-                                                        }
+                                                        onClick={() => handleAddProduct(product)}
                                                     >
                                                         Agregar +
                                                     </button>
